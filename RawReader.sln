@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawReader", "RawReader\RawReader.csproj", "{A0EE3403-A6A1-4487-9359-516D0CEAB71F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JLib.Drawing", "JLib.Drawing\JLib.Drawing.csproj", "{593D29EF-2FC2-4836-A13A-97A3D5133EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JLib.Wpf", "JLib.Wpf\JLib.Wpf.csproj", "{B552D26B-1EE3-4FEC-8123-9BB2FF2298B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0EE3403-A6A1-4487-9359-516D0CEAB71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EE3403-A6A1-4487-9359-516D0CEAB71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EE3403-A6A1-4487-9359-516D0CEAB71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EE3403-A6A1-4487-9359-516D0CEAB71F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593D29EF-2FC2-4836-A13A-97A3D5133EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593D29EF-2FC2-4836-A13A-97A3D5133EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593D29EF-2FC2-4836-A13A-97A3D5133EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593D29EF-2FC2-4836-A13A-97A3D5133EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B552D26B-1EE3-4FEC-8123-9BB2FF2298B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B552D26B-1EE3-4FEC-8123-9BB2FF2298B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B552D26B-1EE3-4FEC-8123-9BB2FF2298B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B552D26B-1EE3-4FEC-8123-9BB2FF2298B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

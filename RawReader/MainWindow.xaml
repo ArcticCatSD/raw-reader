@@ -1,0 +1,123 @@
+﻿<Window x:Class="RawReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RawReader"
+        xmlns:jconv="clr-namespace:JLib.Wpf.Converter;assembly=JLib.Wpf"
+        xmlns:jdraw="clr-namespace:JLib.Drawing;assembly=JLib.Drawing"
+        d:DataContext="{d:DesignInstance Type=local:RawViewModel}"
+        mc:Ignorable="d"
+        Title="{Binding ImagePath}" Height="540" Width="960"
+        WindowStartupLocation="CenterScreen" FontSize="16">
+    <Window.Resources>
+        <jconv:EnumToBooleanConverter x:Key="EnumConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="MediumAquamarine">
+            <Image x:Name="ImageViewer" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </ScrollViewer>
+
+        <GridSplitter Width="5" Background="DarkGray" Grid.Column="1" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Column="2">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                <Button x:Name="ButtonLoad" Content="Load" Padding="5,1,5,1"
+                        Click="ButtonLoad_Click"/>
+                <Button x:Name="ButtonSave" Content="Save" Padding="5,1,5,1" Margin="15,0,0,0" IsEnabled="False"
+                        Click="ButtonSave_Click"/>
+            </StackPanel>
+
+            <GroupBox Margin="10,15,10,0" BorderThickness="2,2,2,2" BorderBrush="DodgerBlue">
+                <Grid Margin="5,15,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Width:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="10,0,0,0"
+                             VerticalAlignment="Center" VerticalContentAlignment="Center"
+                             InputMethod.IsInputMethodEnabled="False"
+                             Validation.ErrorTemplate="{StaticResource MyValidationTemplate}"
+                             Style="{StaticResource MyTextBoxInError}">
+                        <Binding x:Name="BindingRawImageWidth" Path="RawImageWidth" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox>
+
+                    <TextBlock Text="Height:" VerticalAlignment="Center" Grid.Row="1" Margin="0,10,0,0"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="10,10,0,0"
+                             VerticalAlignment="Center" VerticalContentAlignment="Center"
+                             InputMethod.IsInputMethodEnabled="False"
+                             Validation.ErrorTemplate="{StaticResource MyValidationTemplate}"
+                             Style="{StaticResource MyTextBoxInError}">
+                        <Binding x:Name="BindingRawImageHeight" Path="RawImageHeight" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Margin="10,15,10,0" BorderThickness="2,2,2,2" BorderBrush="LimeGreen">
+                <Grid Margin="5,15,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Header size:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Margin="10,0,0,0"
+                             VerticalAlignment="Center" VerticalContentAlignment="Center"
+                             InputMethod.IsInputMethodEnabled="False"
+                             Validation.ErrorTemplate="{StaticResource MyValidationTemplate}"
+                             Style="{StaticResource MyTextBoxInError}">
+                        <Binding x:Name="BindingRawHeaderSize" Path="RawHeaderSize" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Margin="10,15,10,0" BorderThickness="2,2,2,2" BorderBrush="MediumPurple" Header="Bits per Pixel">
+                <WrapPanel Margin="5,5,5,0">
+                    <RadioButton Content="8 BPP" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawBpp, ConverterParameter={x:Static jdraw:Bpp.Bpp8}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="10 BPP" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawBpp, ConverterParameter={x:Static jdraw:Bpp.Bpp10}, Converter={StaticResource EnumConverter}}" Margin="0,0,0,5"/>
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Margin="10,15,10,0" BorderThickness="2,2,2,2" BorderBrush="Orange" Header="Pattern">
+                <WrapPanel Margin="5,5,5,0">
+                    <RadioButton Content="BGGR" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawPattern, ConverterParameter={x:Static jdraw:BayerPattern.BGGR}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="GBRG" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawPattern, ConverterParameter={x:Static jdraw:BayerPattern.GBRG}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="GRBG" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawPattern, ConverterParameter={x:Static jdraw:BayerPattern.GRBG}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="RGGB" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding RawPattern, ConverterParameter={x:Static jdraw:BayerPattern.RGGB}, Converter={StaticResource EnumConverter}}" Margin="0,0,0,5"/>
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Margin="10,15,10,0" BorderThickness="2,2,2,2" BorderBrush="Tomato" Header="Demosaic">
+                <WrapPanel Margin="5,5,5,0">
+                    <RadioButton Content="OpenCV" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding DemosaicMethod, ConverterParameter={x:Static jdraw:DemosaicMethod.OpenCV}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="Imatest" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding DemosaicMethod, ConverterParameter={x:Static jdraw:DemosaicMethod.Imatest}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="MATLAB" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding DemosaicMethod, ConverterParameter={x:Static jdraw:DemosaicMethod.MATLAB}, Converter={StaticResource EnumConverter}}" Margin="0,0,10,5"/>
+                    <RadioButton Content="LabVIEW" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                 IsChecked="{Binding DemosaicMethod, ConverterParameter={x:Static jdraw:DemosaicMethod.LabVIEW}, Converter={StaticResource EnumConverter}}" Margin="0,0,0,5"/>
+                </WrapPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
